@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db");
 
-const Block = db.define("block", {
+const Component = db.define("component", {
   id: {
     type: DataTypes.STRING(12),
     primaryKey: true,
@@ -19,6 +19,6 @@ const Block = db.define("block", {
   },
 });
 
-// Block.sync({ force: true });
+// Component.sync({ force: true });
 
-module.exports = Block;
+module.exports = Component;

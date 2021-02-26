@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db");
-const Blocks = require("../models/Block");
+const { Block } = require("../models");
 
-router.get("/", (req, res) => {
-  Blocks.findAll()
+module.exports = router.get("/", (req, res) => {
+  Block.findAll()
     .then((blocks) => {
       res.status(200).json({
         data: blocks,
@@ -13,9 +12,7 @@ router.get("/", (req, res) => {
     .catch((err) => {
       console.log(err);
       res.Status(400).json({
-        err
+        err,
       });
     });
 });
-
-module.exports = router;

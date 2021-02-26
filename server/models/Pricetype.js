@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db");
 
-const Block = db.define("block", {
+const Pricetype = db.define("pricetype", {
   id: {
     type: DataTypes.STRING(12),
     primaryKey: true,
@@ -19,6 +19,6 @@ const Block = db.define("block", {
   },
 });
 
-// Block.sync({ force: true });
+// Pricetype.sync({ force: true });
 
-module.exports = Block;
+module.exports = Pricetype;
