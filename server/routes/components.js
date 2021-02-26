@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Component, Article, Component_Article } = require("../models");
+const { Block, Component, Article, Component_Article } = require("../models");
 const { nanoid } = require("nanoid");
 
 // Get all components
@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
 
 // Get component by Id
 router.get("/:id", (req, res) => {
-  Component.findByPk(req.params.id, { include: [Block] })
+  Component.findByPk(req.params.id, { include: [Block, Article] })
     .then((component) => {
       res.status(200).json({
         data: component,
@@ -92,6 +92,7 @@ router.post("/:id/addArticle", (req, res) => {
     id: nanoid(12),
     component_id: req.params.id,
     article_id: req.body.article_id,
+    amount: req.body.amount,
   })
     .then((component_article) => {
       res.status(200).json({

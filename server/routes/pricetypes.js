@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { Component, Article, Pricetype } = require("../models");
+const { Pricetype, Article } = require("../models");
 const { nanoid } = require("nanoid");
 
-// Get all Articles
+// Get all Pricetypes
 router.get("/", (req, res) => {
-  Article.findAll()
-    .then((articles) => {
+  Pricetype.findAll()
+    .then((pricetypes) => {
       res.status(200).json({
-        data: articles,
+        data: pricetypes,
       });
     })
     .catch((err) => {
@@ -18,12 +18,12 @@ router.get("/", (req, res) => {
     });
 });
 
-// Get Article by Id
+// Get Pricetype by Id
 router.get("/:id", (req, res) => {
-  Article.findByPk(req.params.id, { include: [Component, Pricetype] })
-    .then((article) => {
+  Pricetype.findByPk(req.params.id, { include: [Article] })
+    .then((pricetype) => {
       res.status(200).json({
-        data: article,
+        data: pricetype,
       });
     })
     .catch((err) => {
@@ -31,18 +31,17 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Create one Article
+// Create one Pricetype
 router.post("/", (req, res) => {
-  const { name, description, pricetype_id } = req.body;
-  Article.create({
+  const { name, description } = req.body;
+  Pricetype.create({
     id: nanoid(12),
     name,
     description,
-    pricetype_id,
   })
-    .then((article) => {
+    .then((pricetype) => {
       res.status(200).json({
-        data: article,
+        data: pricetype,
       });
     })
     .catch((err) => {
@@ -50,10 +49,10 @@ router.post("/", (req, res) => {
     });
 });
 
-// Update one Article
+// Update one Pricetype
 router.put("/:id", (req, res) => {
   const { name, description } = req.body;
-  Article.update(
+  Pricetype.update(
     {
       name,
       description,
@@ -63,9 +62,9 @@ router.put("/:id", (req, res) => {
       returning: true,
     }
   )
-    .then((article) => {
+    .then((pricetype) => {
       res.status(200).json({
-        data: article,
+        data: pricetype,
       });
     })
     .catch((err) => {
@@ -73,9 +72,9 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// Delete one Article
+// Delete one Pricetype
 router.delete("/:id", (req, res) => {
-  Article.destroy({ where: { id: req.params.id } })
+  Pricetype.destroy({ where: { id: req.params.id } })
     .then(
       res.status(200).json({
         data: "Deleted",
