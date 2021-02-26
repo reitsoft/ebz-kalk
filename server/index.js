@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { Blocks, Components } = require("./routes");
+const { Block, Component } = require("./models");
 
 const colorize = require("chalk");
 const log = console.log;
@@ -24,6 +25,7 @@ app.get("/", async (req, res) => {
   }
 });
 
+// Routes
 app.use("/blocks", Blocks);
 app.use("/components", Components);
 

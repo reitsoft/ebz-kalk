@@ -19,6 +19,6 @@ const Component = db.define("component", {
   },
 });
 
-// Component.sync({ force: true });
+// Component.sync({ alter: true });
 
 module.exports = Component;

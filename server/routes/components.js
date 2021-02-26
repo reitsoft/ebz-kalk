@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { Component } = require("../models");
+const { Component, Block } = require("../models");
 const { nanoid } = require("nanoid");
 
+// Get all components
 router.get("/", (req, res) => {
   Component.findAll()
     .then((components) => {
@@ -11,29 +12,31 @@ router.get("/", (req, res) => {
       });
     })
     .catch((err) => {
-      res.Status(400).json({
+      res.status(400).json({
         err,
       });
     });
 });
 
+// Get component by Id
 router.get("/:id", (req, res) => {
-  console.log(req.params.id);
-  Component.findByPk(req.params.id)
+  Component.findByPk(req.params.id, { include: [Block] })
     .then((component) => {
       res.status(200).json({
         data: component,
       });
     })
     .catch((err) => {
-      res.Status(400).json(err);
+      res.status(400).json(err);
     });
 });
 
+// Create one component
 router.post("/", (req, res) => {
-  const { name, description } = req.body;
+  const { block_id, name, description } = req.body;
   Component.create({
     id: nanoid(12),
+    block_id,
     name,
     description,
   })
@@ -43,10 +46,11 @@ router.post("/", (req, res) => {
       });
     })
     .catch((err) => {
-      res.Status(400).json(err);
+      res.status(400).json(err);
     });
 });
 
+// Update one component
 router.put("/:id", (req, res) => {
   const { name, description } = req.body;
   Component.update(
@@ -65,10 +69,11 @@ router.put("/:id", (req, res) => {
       });
     })
     .catch((err) => {
-      res.Status(400).json(err);
+      res.status(400).json(err);
     });
 });
 
+// Delete one component
 router.delete("/:id", (req, res) => {
   Component.destroy({ where: { id: req.params.id } })
     .then(

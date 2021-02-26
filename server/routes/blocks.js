@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { Block } = require("../models");
+const { Op } = require("sequelize");
+const { Block, Component, Block_Component } = require("../models");
 const { nanoid } = require("nanoid");
 
 router.get("/", (req, res) => {
@@ -11,22 +12,21 @@ router.get("/", (req, res) => {
       });
     })
     .catch((err) => {
-      res.Status(400).json({
+      res.status(400).json({
         err,
       });
     });
 });
 
 router.get("/:id", (req, res) => {
-  console.log(req.params.id);
-  Block.findByPk(req.params.id)
+  Block.findByPk(req.params.id, { include: [Component] })
     .then((block) => {
       res.status(200).json({
         data: block,
       });
     })
     .catch((err) => {
-      res.Status(400).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
       });
     })
     .catch((err) => {
-      res.Status(400).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -65,7 +65,7 @@ router.put("/:id", (req, res) => {
       });
     })
     .catch((err) => {
-      res.Status(400).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -76,6 +76,39 @@ router.delete("/:id", (req, res) => {
         data: "Deleted",
       })
     )
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+router.post("/:id/addComponent", (req, res) => {
+  Block_Component.create({
+    id: nanoid(12),
+    block_id: req.params.id,
+    component_id: req.body.component_id,
+  })
+    .then((block_component) => {
+      res.status(200).json({
+        data: block_component,
+      });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+router.delete("/:id/deleteComponent", (req, res) => {
+  Block_Component.destroy({
+    where: {
+      block_id: req.params.id,
+      component_id: req.body.component_id,
+    },
+  })
+    .then((block_component) => {
+      res.status(200).json({
+        data: block_component,
+      });
+    })
     .catch((err) => {
       res.status(400).json(err);
     });
