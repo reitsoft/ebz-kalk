@@ -1,8 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const db = require("./db");
-const { Blocks } = require("./routes");
+const { Blocks, Components } = require("./routes");
 
 const colorize = require("chalk");
 const log = console.log;
@@ -25,7 +24,8 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.use("/blocks",require("./routes/blocks"));
+app.use("/blocks", Blocks);
+app.use("/components", Components);
 
 app.listen(PORT, () => {
   log(
@@ -37,6 +37,7 @@ app.listen(PORT, () => {
 });
 
 //Test DB connection
+// const db = require("./db");
 // db.authenticate()
 //   .then(
 //     console.log("Connection to PostgreSQL has been established successfully.")

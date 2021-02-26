@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { Block } = require("../models");
+const { Component } = require("../models");
 const { nanoid } = require("nanoid");
 
 router.get("/", (req, res) => {
-  Block.findAll()
-    .then((blocks) => {
+  Component.findAll()
+    .then((components) => {
       res.status(200).json({
-        data: blocks,
+        data: components,
       });
     })
     .catch((err) => {
@@ -19,10 +19,10 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   console.log(req.params.id);
-  Block.findByPk(req.params.id)
-    .then((block) => {
+  Component.findByPk(req.params.id)
+    .then((component) => {
       res.status(200).json({
-        data: block,
+        data: component,
       });
     })
     .catch((err) => {
@@ -32,14 +32,14 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   const { name, description } = req.body;
-  Block.create({
+  Component.create({
     id: nanoid(12),
     name,
     description,
   })
-    .then((block) => {
+    .then((component) => {
       res.status(200).json({
-        data: block,
+        data: component,
       });
     })
     .catch((err) => {
@@ -49,7 +49,7 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { name, description } = req.body;
-  Block.update(
+  Component.update(
     {
       name,
       description,
@@ -59,9 +59,9 @@ router.put("/:id", (req, res) => {
       returning: true,
     }
   )
-    .then((block) => {
+    .then((component) => {
       res.status(200).json({
-        data: block,
+        data: component,
       });
     })
     .catch((err) => {
@@ -70,7 +70,7 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  Block.destroy({ where: { id: req.params.id } })
+  Component.destroy({ where: { id: req.params.id } })
     .then(
       res.status(200).json({
         data: "Deleted",
