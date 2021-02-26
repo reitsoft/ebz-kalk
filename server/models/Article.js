@@ -17,6 +17,10 @@ const Article = db.define("article", {
     type: DataTypes.STRING(500),
     allowNull: true,
   },
+  pricetype_id: {
+    type: DataTypes.STRING(12),
+    allowNull: false,
+  }
 });
 
 // Article.sync({ force: true });

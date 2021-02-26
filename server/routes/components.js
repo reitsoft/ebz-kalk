@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Component, Block } = require("../models");
+const { Component, Article, Component_Article } = require("../models");
 const { nanoid } = require("nanoid");
 
 // Get all components
@@ -81,6 +81,41 @@ router.delete("/:id", (req, res) => {
         data: "Deleted",
       })
     )
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+// Add one article to component
+router.post("/:id/addArticle", (req, res) => {
+  Component_Article.create({
+    id: nanoid(12),
+    component_id: req.params.id,
+    article_id: req.body.article_id,
+  })
+    .then((component_article) => {
+      res.status(200).json({
+        data: component_article,
+      });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+// Delete one article from a component
+router.delete("/:id/deleteArticle", (req, res) => {
+  Component_Article.destroy({
+    where: {
+      component_id: req.params.id,
+      article_id: req.body.article_id,
+    },
+  })
+    .then((component_article) => {
+      res.status(200).json({
+        data: component_article,
+      });
+    })
     .catch((err) => {
       res.status(400).json(err);
     });

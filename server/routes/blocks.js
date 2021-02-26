@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 const { Block, Component, Block_Component } = require("../models");
 const { nanoid } = require("nanoid");
 
+// Get all blocks
 router.get("/", (req, res) => {
   Block.findAll()
     .then((blocks) => {
@@ -18,6 +19,7 @@ router.get("/", (req, res) => {
     });
 });
 
+// Get one block by id
 router.get("/:id", (req, res) => {
   Block.findByPk(req.params.id, { include: [Component] })
     .then((block) => {
@@ -30,6 +32,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// Create one block
 router.post("/", (req, res) => {
   const { name, description } = req.body;
   Block.create({
@@ -47,6 +50,7 @@ router.post("/", (req, res) => {
     });
 });
 
+// Update one block by id
 router.put("/:id", (req, res) => {
   const { name, description } = req.body;
   Block.update(
@@ -69,6 +73,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// Delete one block by id
 router.delete("/:id", (req, res) => {
   Block.destroy({ where: { id: req.params.id } })
     .then(
@@ -81,6 +86,7 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+// Add one component to a block
 router.post("/:id/addComponent", (req, res) => {
   Block_Component.create({
     id: nanoid(12),
@@ -97,6 +103,7 @@ router.post("/:id/addComponent", (req, res) => {
     });
 });
 
+// Delete one component from a block
 router.delete("/:id/deleteComponent", (req, res) => {
   Block_Component.destroy({
     where: {
