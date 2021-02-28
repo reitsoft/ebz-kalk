@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "jest --forceExit --maxWorkers=1" 
+    "test": "jest --forceExit" 
   },
-  "scriptsComments": {
-    "test": "other flags:  --detectOpenHandles --watchAll"
+  "scriptComments": {
+    "test": "other flags: --watchAll  --detectOpenHandles --maxWorkers=1"
   },
   "jest": {
     "testEnvironment": "node",

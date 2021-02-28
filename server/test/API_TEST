@@ -1,0 +1,23 @@
+const request = require("supertest");
+const app = require("../index");
+
+
+// TODO Das ist nur ein test
+
+
+describe("Routes", () => {
+  it("should get the basic route", async (done) => {
+    const response = request(app)
+      .post("/blocks")
+      .send({
+        name: "Block55",
+        description: "description",
+      })
+      .expect(201)
+      .end(function (err, res) {
+        if (err) throw err;
+      });
+      console.log(response)
+    done();
+  });
+});

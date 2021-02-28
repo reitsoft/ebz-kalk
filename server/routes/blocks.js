@@ -40,9 +40,7 @@ router.post("/", (req, res) => {
     description,
   })
     .then((block) => {
-      res.status(200).json({
-        data: block,
-      });
+      res.status(201).json(block);
     })
     .catch((err) => {
       res.status(400).json(err);

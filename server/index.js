@@ -21,13 +21,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
-//Test DB connection
-// const db = require("./db");
-// db.authenticate()
-//   .then(
-//     console.log("Connection to PostgreSQL has been established successfully.")
-//   )
-//   .catch((error) =>
-//     console.error("Unable to connect to the PostgreSQL database:", error)
-//   );
