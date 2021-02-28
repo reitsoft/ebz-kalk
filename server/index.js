@@ -14,13 +14,9 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   try {
-    res.status(200).json({
-      status: "OK - Landing Page",
-    });
+    res.sendStatus(200);
   } catch (err) {
-    res.status(400).json({
-      status: "FAIL - ...",
-    });
+    res.sendStatus(400);
   }
 });
 
@@ -38,6 +34,8 @@ app.listen(PORT, () => {
       .bold(`Server is running on port ${PORT}!`)
   );
 });
+
+module.exports = app;
 
 //Test DB connection
 // const db = require("./db");

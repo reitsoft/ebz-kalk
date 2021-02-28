@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { Op } = require("sequelize");
 const { Block, Component, Block_Component } = require("../models");
 const { nanoid } = require("nanoid");
 
