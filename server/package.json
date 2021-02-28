@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "jest"
+    "test": "jest --forceExit --maxWorkers=1" 
+  },
+  "scriptsComments": {
+    "test": "other flags:  --detectOpenHandles --watchAll"
   },
   "jest": {
     "testEnvironment": "node",
@@ -26,12 +29,8 @@
     "sequelize": "^6.5.0"
   },
   "devDependencies": {
-    "chai": "^4.3.0",
-    "chai-http": "^4.3.0",
-    "chalk": "^3.0.0",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
-    "mocha": "^8.3.0",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
   }
