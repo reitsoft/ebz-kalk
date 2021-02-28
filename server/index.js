@@ -4,7 +4,6 @@ const cors = require("cors");
 const { Blocks, Components, Articles, Pricetypes } = require("./routes");
 
 const colorize = require("chalk");
-const { Pricetype } = require("./models");
 const log = console.log;
 
 const PORT = process.env.PORT || 4000;
