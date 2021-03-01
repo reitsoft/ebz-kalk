@@ -74,7 +74,7 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   Block.destroy({ where: { id: req.params.id } })
     .then(
-      res.status(200).json({
+      res.status(204).json({
         data: "Deleted",
       })
     )
@@ -109,7 +109,7 @@ router.delete("/:id/deleteComponent", (req, res) => {
     },
   })
     .then((block_component) => {
-      res.status(200).json({
+      res.status(204).json({
         data: block_component,
       });
     })

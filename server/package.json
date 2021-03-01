@@ -5,16 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "jest --forceExit" 
+    "test": "mocha --exit --reporter list"
   },
   "scriptComments": {
-    "test": "other flags: --watchAll  --detectOpenHandles --maxWorkers=1"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
+    "test": "other flags: jest --forceExit --watchAll  --detectOpenHandles --maxWorkers=1"
   },
   "keywords": [],
   "author": "",
@@ -29,8 +23,9 @@
     "sequelize": "^6.5.0"
   },
   "devDependencies": {
+    "chai": "^4.3.0",
     "cross-env": "^7.0.3",
-    "jest": "^26.6.3",
+    "mocha": "^8.3.0",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
   }
