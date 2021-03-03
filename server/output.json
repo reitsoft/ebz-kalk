@@ -1,0 +1,35 @@
+{
+  "data": {
+    "id": "m_NF63Ju5egN",
+    "name": "Spannstelle Mittel",
+    "description": "Spanner 40 bis 60, mit Konsole, Schrauben, M12 Leitung und Beschriftung",
+    "createdAt": "2021-03-03T09:49:40.535Z",
+    "updatedAt": "2021-03-03T09:49:40.535Z",
+    "blocks": [
+      {
+        "id": "dKedsDj400qZ",
+        "name": "Vorrichtung",
+        "description": "Bodenstehende Vorrichtungen und Ablagen",
+        "createdAt": "2021-03-03T09:40:30.780Z",
+        "updatedAt": "2021-03-03T09:44:34.663Z"
+      }
+    ],
+    "articles": [
+      {
+        "id": "sTtljJR23Dln",
+        "name": "Spanner D50",
+        "description": "Standard Spanner.",
+        "pricetype_id": "tVpPtxPsSWp1",
+        "createdAt": "2021-03-03T10:26:39.955Z",
+        "updatedAt": "2021-03-03T10:26:39.955Z",
+        "pricetype": {
+          "id": "tVpPtxPsSWp1",
+          "name": "Verhandelt",
+          "description": "Verhandelter Endpreis oder Preis aus Rahmenvertrag.",
+          "createdAt": "2021-03-03T10:21:49.910Z",
+          "updatedAt": "2021-03-03T10:21:49.910Z"
+        }
+      }
+    ]
+  }
+}
