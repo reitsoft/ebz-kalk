@@ -1,23 +1,26 @@
 import React from "react";
-import { render } from "react-dom";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import App from "./App";
+import ReactDOM from "react-dom";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#079be0",
-    },
-  },
-});
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-const Root = () => {
-  return (
-    <MuiThemeProvider theme={theme}>
-      <App />
-    </MuiThemeProvider>
-  );
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/animate.min.css";
+import "./assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0";
+import "./assets/css/demo.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
-}
+import { ContextBlocksProvider } from "./context/ContextBlocks";
 
-render(<Root />, document.getElementById("root"));
+import AdminLayout from "layouts/Admin.js";
+
+ReactDOM.render(
+  <ContextBlocksProvider>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+        <Redirect from="/" to="/admin/dashboard" />
+      </Switch>
+    </BrowserRouter>
+  </ContextBlocksProvider>,
+  document.getElementById("root")
+);

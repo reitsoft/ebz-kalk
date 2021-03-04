@@ -17,7 +17,7 @@ app.use("/articles", Articles);
 app.use("/pricetypes", Pricetypes);
 
 app.listen(PORT, () => {
-  console.log("Server is up!");
+  console.log(`Server is up on port ${PORT}!`);
 });
 
 module.exports = app;
