@@ -22,7 +22,7 @@ const Article = db.define("article", {
     allowNull: false,
   },
   price:{
-    type: DataTypes.DECIMAL(8),
+    type: DataTypes.DECIMAL(10,2),
     allowNull: false,
   }
 

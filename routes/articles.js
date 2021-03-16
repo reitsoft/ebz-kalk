@@ -5,7 +5,7 @@ const { nanoid } = require("nanoid");
 
 // Get all Articles
 router.get("/", (req, res) => {
-  Article.findAll()
+  Article.findAll({ include: [Component, Pricetype] })
     .then((articles) => {
       res.status(200).json({
         data: articles,
@@ -33,12 +33,13 @@ router.get("/:id", (req, res) => {
 
 // Create one Article
 router.post("/", (req, res) => {
-  const { name, description, pricetype_id } = req.body;
+  const { name, description, pricetype_id, price } = req.body;
   Article.create({
     id: nanoid(12),
     name,
     description,
     pricetype_id,
+    price,
   })
     .then((article) => {
       res.status(200).json({
@@ -52,11 +53,13 @@ router.post("/", (req, res) => {
 
 // Update one Article
 router.put("/:id", (req, res) => {
-  const { name, description } = req.body;
+  const { name, description, pricetype_id, price } = req.body;
   Article.update(
     {
       name,
       description,
+      pricetype_id,
+      price,
     },
     {
       where: { id: req.params.id },

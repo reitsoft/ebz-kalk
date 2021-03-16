@@ -5,7 +5,7 @@ const { nanoid } = require("nanoid");
 
 // Get all blocks
 router.get("/", (req, res) => {
-  Block.findAll()
+  Block.findAll({ include: [Component] })
     .then((blocks) => {
       res.status(200).json({
         data: blocks,
