@@ -20,9 +20,14 @@ const Article = db.define("article", {
   pricetype_id: {
     type: DataTypes.STRING(12),
     allowNull: false,
+  },
+  price:{
+    type: DataTypes.DECIMAL(8),
+    allowNull: false,
   }
+
 });
 
-// Article.sync({ force: true });
+// Article.sync({ alter: true });
 
 module.exports = Article;
