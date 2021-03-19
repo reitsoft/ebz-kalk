@@ -25,9 +25,10 @@ describe("Block Routes:", () => {
       "name",
       "description",
       "createdAt",
-      "updatedAt"
+      "updatedAt",
+      "components"
     );
-    expect(data.id).to.have.lengthOf(12);
+    // expect(data.id).to.have.lengthOf(12);
   });
 
   let testBlock = {

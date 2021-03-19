@@ -31,9 +31,25 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// check if article name is unique
+router.get("/isunique/:name", (req, res) => {
+  const name = req.params.name;
+  Article.findOne({ where: { name } })
+    .then((name) => name !== null)
+    .then((isUnique) => {
+      res.status(200).json({
+        data: !isUnique,
+      });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
 // Create one Article
 router.post("/", (req, res) => {
   const { name, description, pricetype_id, price } = req.body;
+  // console.log(req.body)
   Article.create({
     id: nanoid(12),
     name,
